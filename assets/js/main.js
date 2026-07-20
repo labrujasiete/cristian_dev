@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Vanta.js NET Background ---
         if (typeof VANTA !== 'undefined') {
+            const isMobile = window.innerWidth < 768;
             VANTA.NET({
                 el: "#home",
                 mouseControls: true,
@@ -16,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 scaleMobile: 1.00,
                 color: 0xa3e635, // Lima 400
                 backgroundColor: 0x030303,
-                points: 16.00,
-                maxDistance: 22.00,
-                spacing: 15.00,
+                points: isMobile ? 8.00 : 16.00,
+                maxDistance: isMobile ? 25.00 : 22.00,
+                spacing: isMobile ? 25.00 : 15.00,
                 showDots: true
             });
         }

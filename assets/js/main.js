@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el: "#home",
                 mouseControls: true,
                 touchControls: true,
-                gyroControls: true,
+                gyroControls: false,
                 minHeight: 200.00,
                 minWidth: 200.00,
                 scale: 1.00,
@@ -22,6 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 spacing: isMobile ? 25.00 : 15.00,
                 showDots: true
             });
+
+            // Custom Gyroscope logic (X-axis / gamma only)
+            if (isMobile && window.DeviceOrientationEvent) {
+                window.addEventListener("deviceorientation", function(event) {
+                    let gamma = event.gamma; // -90 to 90
+                    if (gamma === null) return;
+                    
+                    if (gamma > 45) gamma = 45;
+                    if (gamma < -45) gamma = -45;
+                    
+                    let xPos = ((gamma + 45) / 90) * window.innerWidth;
+                    let yPos = window.innerHeight / 2;
+                    
+                    let ev = new MouseEvent('mousemove', {
+                        clientX: xPos,
+                        clientY: yPos
+                    });
+                    window.dispatchEvent(ev);
+                });
+            }
         }
 
         // --- GSAP Reveals ---

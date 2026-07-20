@@ -99,16 +99,15 @@ header {
 }
 
 .logo {
-    font-weight: 800;
-    font-size: 1.35rem;
-    letter-spacing: -0.04em;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
-    color: var(--text-primary);
 }
 
-.logo span {
-    font-weight: 800;
-    color: var(--accent-color);
+.logo-img {
+    height: 18px;
+    width: auto;
+    display: block;
 }
 
 .header-actions {
